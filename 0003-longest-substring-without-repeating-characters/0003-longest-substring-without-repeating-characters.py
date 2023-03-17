@@ -6,14 +6,14 @@ class Solution:
         max_len: int = 1
         left: int = 0
         right: int = 1
-        letters: Set[str] = set(s[0])
+        letters: Dict[str, int] = {s[left]: left}
 
         while right < len(s):
-            while s[right] in letters:
-                letters.remove(s[left])
-                left += 1
-            letters.add(s[right])
+            if s[right] in letters:
+                left = letters[s[right]] + 1 if letters[s[right]] >= left else left
+                
+            letters[s[right]] = right
             right += 1
-            max_len = max(max_len, len(letters))
+            max_len = max(max_len, right - left)
 
         return max_len

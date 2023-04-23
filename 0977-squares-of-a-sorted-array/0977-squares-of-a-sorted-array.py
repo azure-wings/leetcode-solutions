@@ -4,17 +4,18 @@ from typing import Deque, List
 
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        nums: Deque[int] = deque(nums)
         result: Deque[int] = deque()
+        left, right = 0, len(nums) - 1
         square: Callable[[int], int] = lambda x: x*x
         
-        while nums:
-            left_square, right_square = square(nums[0]), square(nums[-1])
+        while left <= right:
+            left_square, right_square = \
+                square(nums[left]), square(nums[right])
             if left_square >= right_square:
                 result.appendleft(left_square)
-                nums.popleft()
+                left += 1
             else:
                 result.appendleft(right_square)
-                nums.pop()
+                right -= 1
 
         return list(result)

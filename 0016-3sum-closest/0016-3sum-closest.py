@@ -10,6 +10,8 @@ class Solution:
 
             while left < right:
                 curr_sum: int = nums[left] + nums[right] + nums[i]
+                if target == curr_sum:
+                    return curr_sum
                 if abs(target - closest) >= abs(target - curr_sum):
                     closest = curr_sum
                     

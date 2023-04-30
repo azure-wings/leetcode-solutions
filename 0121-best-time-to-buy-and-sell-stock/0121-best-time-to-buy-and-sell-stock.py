@@ -1,15 +1,12 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        left: int = 0
-        right: int = 1
-        max_profit: int = 0
-        days: int = len(prices)
+        left = 0
+        max_profit = 0
 
-        while right < days:
-            if prices[right] < prices[left]:
+        for right in range(len(prices)):
+            if prices[left] > prices[right]:
                 left = right
             else:
-                max_profit = max(prices[right] - prices[left], max_profit)
-            right += 1
+                max_profit = max(max_profit, prices[right] - prices[left])
 
         return max_profit

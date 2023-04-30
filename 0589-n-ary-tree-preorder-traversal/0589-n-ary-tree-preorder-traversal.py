@@ -21,6 +21,6 @@ class Solution:
         while visiting:
             curr: Node = visiting.pop()
             result.append(curr.val)
-            visiting.extend(curr.children[::-1])
+            visiting.extend(reversed(curr.children))
 
         return result

@@ -5,16 +5,13 @@ class Node:
         self.val = val
         self.children = children
 """
-from collections import deque
-
-
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
         result = []
         if root is None:
             return result
 
-        visiting = deque()
+        visiting = collections.deque()
         visiting.append(root)
         
         while visiting:

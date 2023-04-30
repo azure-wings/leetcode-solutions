@@ -3,17 +3,15 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        lo: int = 0
+        red, white, blue = 0, 0, len(nums) - 1
 
-        for i in range(3):
-            hi: int = len(nums) - 1
-
-            while lo <= hi:
-                if nums[lo] == i:
-                    lo += 1
-                elif nums[lo] != i and nums[hi] == i:
-                    nums[lo], nums[hi] = nums[hi], nums[lo]
-                    lo += 1
-                    hi -= 1
-                else:
-                    hi -= 1
+        while white <= blue:
+            if nums[white] == 0:
+                nums[red], nums[white] = nums[white], nums[red]
+                red += 1
+                white += 1
+            elif nums[white] == 1:
+                white += 1
+            elif nums[white] == 2:
+                nums[blue], nums[white] = nums[white], nums[blue]
+                blue -= 1

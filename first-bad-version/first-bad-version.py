@@ -11,9 +11,9 @@ class Solution:
         while lo <= hi:
             mid = (lo + hi) // 2
 
-            if isBadVersion(mid) == True and isBadVersion(mid - 1) == False:
-                return mid
-            elif isBadVersion(mid) == True and isBadVersion(mid - 1) == True:
+            if isBadVersion(mid) == True:
                 hi = mid - 1
             else:
                 lo = mid + 1
+
+        return lo

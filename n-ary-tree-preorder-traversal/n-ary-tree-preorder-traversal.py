@@ -6,7 +6,6 @@ class Node:
         self.children = children
 """
 from collections import deque
-from typing import Deque
 
 
 class Solution:
@@ -15,9 +14,9 @@ class Solution:
             return []
 
         result: List[int] = []
-        visiting: Deque[int] = deque()
+        visiting = deque()
         visiting.append(root)
-
+        
         while visiting:
             curr: Node = visiting.pop()
             result.append(curr.val)

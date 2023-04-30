@@ -19,7 +19,8 @@ class Solution:
         
         while visiting:
             curr = visiting.pop()
-            result.append(curr.val)
-            visiting.extend(reversed(curr.children))
+            if curr:
+                result.append(curr.val)
+                visiting.extend(reversed(curr.children))
 
         return result

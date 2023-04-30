@@ -12,7 +12,10 @@ class Solution:
             mid = (lo + hi) // 2
 
             if isBadVersion(mid) == True:
-                hi = mid - 1
+                if isBadVersion(mid - 1) == False:
+                    return mid
+                else:
+                    hi = mid - 1
             else:
                 lo = mid + 1
 

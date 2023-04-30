@@ -11,24 +11,23 @@ from typing import Deque
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         result: List[List[int]] = []
-        if root is None:
+        if not root:
             return result
 
         visiting: Deque[TreeNode] = deque()
         visiting.append(root)
 
         while visiting:
-            curr_level: List[int] = []
-            curr_size: int = len(visiting)
-            for i in range(curr_size):
-                curr_node: TreeNode = visiting.popleft()
-                if curr_node.left is not None:
-                    visiting.append(curr_node.left)
-                if curr_node.right is not None:
-                    visiting.append(curr_node.right)
-                curr_level.append(curr_node.val)
-
-            result.append(curr_level)
+            curr_level: List[TreeNode] = []
+            while visiting:
+                curr_level.append(visiting.popleft())
+            
+            result.append([node.val for node in curr_level])
+            for node in curr_level:
+                if node.left:
+                    visiting.append(node.left)
+                if node.right:
+                    visiting.append(node.right)
 
         return result
             

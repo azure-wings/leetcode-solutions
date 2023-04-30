@@ -5,22 +5,20 @@ class Node:
         self.val = val
         self.children = children
 """
-from collections import deque
-from typing import Deque
-
-
 class Solution:
+    result: List[int] = []
+
+    def dfs(self, node: 'Node') -> None:
+        if node is None:
+            return
+        else:
+            self.result.append(node.val)
+            for child in node.children:
+                self.dfs(child)
+
     def preorder(self, root: 'Node') -> List[int]:
-        if root is None:
-            return []
+        self.result = []
+        self.dfs(root)
 
-        result: List[int] = []
-        visiting: Deque[int] = deque()
-        visiting.append(root)
-
-        while visiting:
-            curr: Node = visiting.pop()
-            result.append(curr.val)
-            visiting.extend(curr.children[::-1])
-
-        return result
+        return self.result
+        

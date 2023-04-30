@@ -11,17 +11,16 @@ from typing import Deque
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        if root is None:
+            return []
+
         result: List[int] = []
         visiting: Deque[int] = deque()
         visiting.append(root)
 
         while visiting:
             curr: Node = visiting.pop()
-            try:
-                result.append(curr.val)
-            except:
-                break
-            for child in curr.children[::-1]:
-                visiting.append(child)
+            result.append(curr.val)
+            visiting.extend(curr.children[::-1])
 
         return result

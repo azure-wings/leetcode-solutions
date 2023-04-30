@@ -10,15 +10,15 @@ from collections import deque
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        result = []
         if root is None:
-            return []
+            return result
 
-        result: List[int] = []
         visiting = deque()
         visiting.append(root)
         
         while visiting:
-            curr: Node = visiting.pop()
+            curr = visiting.pop()
             result.append(curr.val)
             visiting.extend(reversed(curr.children))
 
